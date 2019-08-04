@@ -1,5 +1,6 @@
 #!/usr/bin/ruby
 #rgraph for qtruby4
+#for linux and windows
 require "Qt"
 require "./graphpanel4.rb"
 require "./graphwindow4.rb"
