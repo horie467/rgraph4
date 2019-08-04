@@ -1,8 +1,8 @@
 #!/usr/bin/ruby
 #rgraph for qtruby4
 require "Qt"
-require ".\\graphpanel4.rb"
-require ".\\graphwindow4.rb"
+require "./graphpanel4.rb"
+require "./graphwindow4.rb"
 include Math
 
 class GraphData
