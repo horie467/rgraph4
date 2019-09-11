@@ -35,6 +35,8 @@ def initialize(w)
   #@gwin.show
   #@gwin.clear
   Qt::Object.connect(@pb_draw,SIGNAL('clicked()'),@graphPanelWidget,SLOT('draw_graph()'))
+
+  w.setGraphPanel(self)
 end
 def setGraphWindow(gwin)
   @gwin = gwin
@@ -83,6 +85,8 @@ def initialize(w,gdata=nil)
   @graph_res=1000
   @logical_w=@graph_res + (@margin_x * 2)+ @margin_left
   @logical_h=@graph_res + (@margin_y * 2)
+
+  w.setGraphWindow(self)
 
 end
 
@@ -217,8 +221,7 @@ p = GraphPanelWidget.new
 gw = GraphWindow.new(w)
 gp = GraphPanel.new(p)
 gp.setGraphWindow(gw)
-w.setGraphWindow(gw)
-p.setGraphPanel(gp)
+
 p.setGraphWindowWidget(w)
 
 w.show
