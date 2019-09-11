@@ -18,10 +18,11 @@ end
 end
 
 class GraphPanel < Ui_GraphPanelBase
-slots 'draw_graph()'
-def initialize
-  super
-  setupUi(self)
+#slots 'draw_graph()'
+def initialize(w)
+  @graphPanelWidget = w
+  super()
+  setupUi(w)
   @graph_data=GraphData.new
 
   @xmax.setText(@graph_data.xmax.to_s)
@@ -30,16 +31,21 @@ def initialize
   @ymin.setText(@graph_data.ymin.to_s)
   @le_func.setText(@graph_data.func_y.to_s)
 
-  @gwin = GraphWindow.new()
-  @gwin.show
+  #@gwin = GraphWindow.new(w)
+  #@gwin.show
+  #@gwin.clear
+  Qt::Object.connect(@pb_draw,SIGNAL('clicked()'),@graphPanelWidget,SLOT('draw_graph()'))
+end
+def setGraphWindow(gwin)
+  @gwin = gwin
   @gwin.clear
-  connect(@pb_draw,SIGNAL('clicked()'),self,SLOT('draw_graph()'))
 end
 def draw_graph()
+  puts "draw_graph in GraphPanel called"
   get_parameters
   @gwin.set_graph_data(@graph_data)
-  @gwin.show
   @gwin.draw
+  #@graphPanelWidget.show
   @gwin.setup=true
 end
 
@@ -55,36 +61,17 @@ def get_graph_data
   @graph_data
 end
 
-    def closeEvent(e)
-       if confirmExit
-           @gwin.close
-           e.accept
-       else
-           e.ignore
-        end
-    end
-
-    def confirmExit
-        ret = 0
-        ret = Qt::MessageBox::warning(
-                                self,
-                                "Close Windows?" ,
-                                "Close all windows ?",
-                                 Qt::MessageBox::Yes,
-                                 Qt::MessageBox::No)
-        return ret != Qt::MessageBox::No
-    end
-
-
 end
 
 class GraphWindow < Ui_GraphWindowBase
-attr_accessor :setup
-def initialize(gdata=nil)
+attr_accessor :setup,:frame_margin_x,:frame_margin_y
+def initialize(w,gdata=nil)
   super()
-  setupUi(self)
+  setupUi(w)
+  @graphWindowWidget = w
   @gdata = gdata
-  resize(400,400)
+  #@graphWindowWidget.resize(400,400)
+  @graph.resize(400,400)
   @painter = Qt::Painter.new
 
   @setup = false
@@ -112,6 +99,7 @@ def draw()
   drawAxis
   @setup = true
   @graph.setPixmap(@pixmap)
+  @graphWindowWidget.show
 end
 
 def set_graph_data(gdata)
@@ -171,18 +159,72 @@ def drawAxis
 
 end
 
-def resizeEvent(e)
-@graph.setGeometry(@frame_margin_x,@frame_margin_y,width()-(@frame_margin_x * 2),height()-70)
-  if(@setup)
-    draw
-  end
+
+
 end
 
+class GraphPanelWidget < Qt::Widget
+slots 'draw_graph()'
+def setGraphPanel(gp)
+  @graphPanel=gp
+end
+def draw_graph
+  puts "draw_graph called"
+  @graphPanel.draw_graph
+end
+def setGraphWindowWidget(w)
+  @gwin = w
+end
+def closeEvent(e)
+       if confirmExit
+           @gwin.close
+           e.accept
+       else
+           e.ignore
+        end
+    end
+
+def confirmExit
+        ret = 0
+        ret = Qt::MessageBox::warning(
+                                self,
+                                "Close Windows?" ,
+                                "Close all windows ?",
+                                 Qt::MessageBox::Yes,
+                                 Qt::MessageBox::No)
+        return ret != Qt::MessageBox::No
+end
+
+
+end
+
+class GraphWindowWidget < Qt::Widget
+def setGraphWindow(gw)
+  @gw = gw
+end
+def resizeEvent(e)
+  @gw.graph.setGeometry(@gw.frame_margin_x,@gw.frame_margin_y,width()-(@gw.frame_margin_x * 2),height()-70)
+  if(@gw.setup)
+    @gw.draw
+  end
+end
 end
 
 a = Qt::Application.new(ARGV)
-main = GraphPanel.new
-main.show
+w = GraphWindowWidget.new
+p = GraphPanelWidget.new
+
+gw = GraphWindow.new(w)
+gp = GraphPanel.new(p)
+gp.setGraphWindow(gw)
+w.setGraphWindow(gw)
+p.setGraphPanel(gp)
+p.setGraphWindowWidget(w)
+
+w.show
+p.show
+
 a.exec
+
 
 

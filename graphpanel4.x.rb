@@ -1,11 +1,13 @@
 =begin
 ** Form generated from reading ui file 'graphpanel4.ui'
 **
-** Created: 水 9月 11 17:14:10 2019
+** Created: 水 9月 11 15:32:17 2019
 **      by: Qt User Interface Compiler version 4.8.7
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
 =end
+
+require 'Qt4'
 
 class Ui_GraphPanelBase
     attr_reader :gridLayout
@@ -110,3 +112,11 @@ module Ui
     end
 end  # module Ui
 
+if $0 == __FILE__
+    a = Qt::Application.new(ARGV)
+    u = Ui_GraphPanelBase.new
+    w = Qt::Widget.new
+    u.setupUi(w)
+    w.show
+    a.exec
+end
