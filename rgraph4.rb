@@ -221,8 +221,8 @@ p = GraphPanelWidget.new
 
 gw = GraphWindow.new(w)
 gp = GraphPanel.new(p)
-gp.setGraphWindow(gw)
 
+gp.setGraphWindow(gw)
 p.setGraphWindowWidget(w)
 
 w.show
