@@ -1,34 +1,27 @@
-=begin
-** Form generated from reading ui file 'graphwindow4.ui'
-**
-** Created: 土 9月 21 11:00:55 2019
-**      by: Qt User Interface Compiler version 4.8.7
-**
-** WARNING! All changes made in this file will be lost when recompiling ui file!
-=end
+# ** Form generated from reading ui file 'graphwindow4.ui'
+# **
+# ** Created: 土 9月 21 11:00:55 2019
+# **      by: Qt User Interface Compiler version 4.8.7
+# **
+# ** WARNING! All changes made in this file will be lost when recompiling ui file!
 
 class Ui_GraphWindowBase
-    attr_reader :gridLayout
-    attr_reader :graph
-    attr_reader :pb_close
-    attr_reader :spacerItem
+  attr_reader :gridLayout, :graph, :pb_close, :spacerItem
 
-    def setupUi(graphWindowBase)
-    if graphWindowBase.objectName.nil?
-        graphWindowBase.objectName = "graphWindowBase"
-    end
+  def setupUi(graphWindowBase)
+    graphWindowBase.objectName = 'graphWindowBase' if graphWindowBase.objectName.nil?
     graphWindowBase.resize(490, 428)
     @gridLayout = Qt::GridLayout.new(graphWindowBase)
     @gridLayout.spacing = 6
     @gridLayout.margin = 9
-    @gridLayout.objectName = "gridLayout"
+    @gridLayout.objectName = 'gridLayout'
     @graph = Qt::Label.new(graphWindowBase)
-    @graph.objectName = "graph"
+    @graph.objectName = 'graph'
 
     @gridLayout.addWidget(@graph, 0, 0, 1, 2)
 
     @pb_close = Qt::PushButton.new(graphWindowBase)
-    @pb_close.objectName = "pb_close"
+    @pb_close.objectName = 'pb_close'
 
     @gridLayout.addWidget(@pb_close, 1, 1, 1, 1)
 
@@ -36,31 +29,29 @@ class Ui_GraphWindowBase
 
     @gridLayout.addItem(@spacerItem, 1, 0, 1, 1)
 
-
     retranslateUi(graphWindowBase)
     Qt::Object.connect(@pb_close, SIGNAL('clicked()'), graphWindowBase, SLOT('close()'))
 
     Qt::MetaObject.connectSlotsByName(graphWindowBase)
-    end # setupUi
+  end # setupUi
 
-    def setup_ui(graphWindowBase)
-        setupUi(graphWindowBase)
-    end
+  def setup_ui(graphWindowBase)
+    setupUi(graphWindowBase)
+  end
 
-    def retranslateUi(graphWindowBase)
-    graphWindowBase.windowTitle = Qt::Application.translate("GraphWindowBase", "Graph Window", nil, Qt::Application::UnicodeUTF8)
-    @graph.text = Qt::Application.translate("GraphWindowBase", "TextLabel", nil, Qt::Application::UnicodeUTF8)
-    @pb_close.text = Qt::Application.translate("GraphWindowBase", "Close", nil, Qt::Application::UnicodeUTF8)
-    end # retranslateUi
+  def retranslateUi(graphWindowBase)
+    graphWindowBase.windowTitle = Qt::Application.translate('GraphWindowBase', 'Graph Window', nil,
+                                                            Qt::Application::UnicodeUTF8)
+    @graph.text = Qt::Application.translate('GraphWindowBase', 'TextLabel', nil, Qt::Application::UnicodeUTF8)
+    @pb_close.text = Qt::Application.translate('GraphWindowBase', 'Close', nil, Qt::Application::UnicodeUTF8)
+  end # retranslateUi
 
-    def retranslate_ui(graphWindowBase)
-        retranslateUi(graphWindowBase)
-    end
-
+  def retranslate_ui(graphWindowBase)
+    retranslateUi(graphWindowBase)
+  end
 end
 
 module Ui
-    class GraphWindowBase < Ui_GraphWindowBase
-    end
+  class GraphWindowBase < Ui_GraphWindowBase
+  end
 end  # module Ui
-
