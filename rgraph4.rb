@@ -1,5 +1,6 @@
 #!/usr/bin/ruby
 # frozen_string_literal: true
+# git version
 
 # rgraph for qtruby4
 # for linux and windows
