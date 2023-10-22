@@ -1,11 +1,14 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 # frozen_string_literal: true
+# git version
+#for require ./ problem
+$LOAD_PATH.unshift File.dirname(__FILE__)
 
 # rgraph for qtruby4
 # for linux and windows
 require 'Qt'
-require './graphpanel4.rb'
-require './graphwindow4.rb'
+require 'graphpanel4.rb'
+require 'graphwindow4.rb'
 include Math
 
 class GraphData
