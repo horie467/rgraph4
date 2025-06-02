@@ -4,29 +4,20 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
         {
-            "name": "Debug Local File",
-            "type": "Ruby",
-            "request": "launch",
-            "program": "${file}"
-        },
-
-        {
-            "type": "rdbg",
-            "name": "Debug input file with rdbg",
-            "request": "launch",
-            "script": "${file}",
-            "args": [],
-            "askParameters": true
+            "type": "ruby_lsp",
+            "request": "attach",
+            "name": "Attach to a debuggee"
         },
         {
-            "type": "rdbg",
-            "name": "Debug current file with rdbg",
+            "type": "ruby-debug",
             "request": "launch",
-            "script": "${file}",
-            "args": [],
-            "askParameters": false
+            "name": "RSpec",
+            "program": "rspec",
+            "programArgs": [
+                "${workspaceFolder}"
+            ],
+            "useBundler": false
         },
         {
             "type": "ruby-debug",
@@ -35,7 +26,8 @@
             "program": "${file}",
             "programArgs": [],
             "useBundler": false
-        },
+        }
+        
 
     ]
 }
