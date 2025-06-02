@@ -8,7 +8,7 @@
             "type": "ruby-debug",
             "request": "launch",
             "name": "Launch File",
-            "program": "${workspaceFolder}/${command:AskForProgramName}",
+            "program": "${file}",
             "programArgs": [],
             "useBundler": false
         },
