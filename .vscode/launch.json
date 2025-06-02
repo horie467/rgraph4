@@ -5,6 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "ruby-debug",
+            "request": "launch",
+            "name": "Launch File",
+            "program": "${workspaceFolder}/${command:AskForProgramName}",
+            "programArgs": [],
+            "useBundler": false
+        },
+        {
             "type": "ruby_lsp",
             "request": "attach",
             "name": "Attach to a debuggee"
