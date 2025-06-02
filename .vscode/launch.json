@@ -10,23 +10,19 @@
             "name": "Attach to a debuggee"
         },
         {
-            "type": "ruby-debug",
+            "type": "ruby_lsp",
             "request": "launch",
-            "name": "RSpec",
-            "program": "rspec",
-            "programArgs": [
-                "${workspaceFolder}"
-            ],
-            "useBundler": false
+            "name": "Debug program",
+            "program": "ruby "
         },
         {
-            "type": "ruby-debug",
+            "type": "rdbg",
+            "name": "Debug current file",
             "request": "launch",
-            "name": "Launch File",
-            "program": "${file}",
-            "programArgs": [],
-            "useBundler": false
+            "script": "",
+            "askParameters": true
         }
+        
         
 
     ]
